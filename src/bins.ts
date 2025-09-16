@@ -5,7 +5,7 @@ import {
     existsSync,
     isMac,
     isWindows,
-} from "../scripts/constants.js";
+} from "../scripts/constants";
 
 export function findAlsa() {
     const arecordPath = shell.which('arecord');

@@ -1,11 +1,12 @@
 {
     "compilerOptions": {
         "target": "esnext",
-        "module": "esnext",
+        "module": "commonjs",
         "moduleResolution": "node",
         "esModuleInterop": true,
         "outDir": "./dist",
-        "declaration": true
+        "declaration": true,
+        "types": ["node"]
     },
     "include": [ "./src" ],
     "exclude": ["**/scripts", "**/node_modules"]

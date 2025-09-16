@@ -1,5 +1,5 @@
-import NodeMic from './dist/index.js';
-import fs from 'fs';
+const NodeMic = require('./dist/index.js').default;
+const fs = require('fs');
 
 const mic = new NodeMic({
     rate: 16000,
@@ -14,7 +14,7 @@ const outputFileStream = fs.createWriteStream('output.raw');
 micInputStream.pipe(outputFileStream);
 
 micInputStream.on('data', (data) => {
-    //console.log('Recieved Input Stream: ' + data.length);
+    console.log('Recieved Input Stream: ' + data.length);
 });
 
 micInputStream.on('error', (err) => {

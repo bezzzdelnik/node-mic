@@ -1,9 +1,9 @@
-import path from 'path';
-import fs from 'fs/promises';
-import shell from 'shelljs';
-import fetch from 'node-fetch';
-import * as fflate from 'fflate';
-import {
+const path = require('path');
+const fs = require('fs/promises');
+const shell = require('shelljs');
+const fetch = (...args) => import('node-fetch').then(m => m.default(...args));
+const fflate = require('fflate');
+const {
     SOX_MACOSX_OUTPUT_BIN,
     SOX_MACOSX_OUTPUT_DIR,
     SOX_MACOSX_URL,
@@ -13,7 +13,7 @@ import {
     exists,
     isMac,
     isWindows,
-} from "./constants.js";
+} = require('./constants');
 
 function unzip(buffer) {
     const unzipper = new fflate.Unzip();
@@ -48,12 +48,10 @@ async function downloadZip(url, dir) {
 
 async function installMac() {
     if (shell.which('rec')) {
-        // Already installed.
         return;
     }
 
     if (await exists(SOX_MACOSX_OUTPUT_BIN)) {
-        // Already downloaded.
         return;
     }
 
@@ -78,12 +76,10 @@ async function installMac() {
 
 async function installWindows() {
     if (shell.which('sox')) {
-        // Already installed.
         return;
     }
 
     if (await exists(SOX_WIN32_OUTPUT_BIN)) {
-        // Already downloaded.
         return;
     }
 
@@ -100,7 +96,6 @@ async function installWindows() {
 
 async function installLinux() {
     if (shell.which('arecord')) {
-        // Already installed.
         return;
     }
 

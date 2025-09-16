@@ -1,9 +1,9 @@
 import { PassThrough } from 'stream';
 import { spawn, ChildProcess, SpawnOptions } from 'child_process';
-import { extractMetadata } from './metadata.js';
-import { AudioStream } from './audio.js';
-import { findAlsa, findRec, findSox } from './bins.js';
-import { isMac, isWindows } from '../scripts/constants.js';
+import { extractMetadata } from './metadata';
+import { AudioStream } from './audio';
+import { findAlsa, findRec, findSox } from './bins';
+import { isMac, isWindows } from '../scripts/constants';
 
 export interface MicOptions {
     endian: 'big' | 'little';
@@ -50,7 +50,6 @@ export default class Mic {
         };
         this._audioProcess = null;
 
-        // Setup format variable for arecord call
         const formatEndian = this._endian === 'big' ? 'BE' : 'LE';
         const formatEncoding = this._encoding === 'unsigned-integer' ? 'U' : 'S';
 
